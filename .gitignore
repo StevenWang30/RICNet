@@ -16,4 +16,4 @@ data/
 # models/
 train.py
 *.so
-docker_commands.txt
+*.txt
