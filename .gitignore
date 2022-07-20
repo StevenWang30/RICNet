@@ -1,0 +1,19 @@
+.vscode/
+build/
+#datasets/
+*.egg*/
+__pycache__/
+*/__pycache__/*
+.egg/
+run_scripts/
+server_shell/
+docker/
+log_train/
+experiments/
+output/
+data/
+*.pyc
+# models/
+train.py
+*.so
+docker_command.txt

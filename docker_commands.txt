@@ -1,0 +1,28 @@
+
+1. copy dataset to server
+	scp -P 23333 -r /data/pointcloud_compression $SERVER6:/data_shared/Docker/skwang 
+
+
+2. copy code to server
+	scp -P 23333 -r ~/DLProject/Pytorch/code/pcseg $SERVER6:~/code/Pytorch
+
+	./copy_code_to_server6.sh
+ 
+
+3. cd to dockerfile directory, then build and create docker environment.
+	docker build -t skwang/pcseg_image .
+
+	docker run --gpus all -it -p 6799:6006 -v ~/code/Pytorch:/code -v /data_shared/Docker/skwang:/data --name skwang_pcseg_project skwang/pcseg_image /bin/bash
+
+
+4. use single GPU
+CUDA_VISIBLE_DEVICES=1 python train.py
+
+
+5. send result back
+scp -P 23333 $SERVER6:~/code/Pytorch/pcseg/log_train/train/plane-100-model-all.txt /data/code_results/Point_Cloud_Compression/pcseg/server_results
+
+scp -P 23333 -r $SERVER8:~/code/Pytorch/pcseg/log_train/train /data/code_results/Point_Cloud_Compression/pcseg/server_results
+
+scp -P 23333 -r $SERVER8:~/code/Pytorch/pcseg/log_train/ckpt_save /data/code_results/Point_Cloud_Compression/pcseg/server_results
+

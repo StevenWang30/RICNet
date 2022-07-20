@@ -1,0 +1,2 @@
+/data/KITTI_detection/training/velodyne_original/000443.bin
+/data/KITTI_detection/training/velodyne_original/000571.bin

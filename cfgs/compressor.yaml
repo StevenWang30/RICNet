@@ -1,0 +1,7 @@
+BASIC_COMPRESSOR_NAME: 'bzip2'  # 'lz4', 'bzip2', 'gzip' == 'deflate'
+# compression rate: bzip2 > deflate > lz4
+# time cost: lz4:deflate:bzip2 = 1:100:300
+
+CLUSTER_NUM: 400
+PLANE_NUM: 5
+ACCURACY: 0.02
