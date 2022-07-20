@@ -193,7 +193,7 @@ def compress():
     bitstream_stage_1 = basic_compressor.compress(range_image_stage_1.astype(np.uint16).tobytes())
     point_num = np.where(range_image_stage_1 != 0)[0].shape[0]
     
-    total_len = len(bitstream_stage_1) + len(bitstream_ac)
+    total_len = len(bitstream_stage_1)
     print('bpp: ', total_len * 8 / point_num, ' compression ratio: ', point_num * 3 * 32 / (total_len * 8))
     
     # save bitstream to file

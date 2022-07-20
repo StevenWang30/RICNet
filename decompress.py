@@ -187,7 +187,7 @@ def decompress():
         range_image = PCTransformer.pointcloud_to_rangeimage(point_cloud_original, lidar_param=lidar_param)
         range_image = np.expand_dims(range_image, -1)
         point_cloud = PCTransformer.range_image_to_point_cloud(range_image, lidar_param.range_image_to_point_cloud_map)
-        point_num = np.where(point_cloud[:, 0] != 0)[0].shape[0]
+        point_num = np.where(range_image != 0)[0].shape[0]
         
         stage_2_residual = range_image - reconstructed_range_image.detach().cpu().numpy()[0]
         residual_max = np.abs(stage_2_residual).max()
@@ -199,6 +199,7 @@ def decompress():
         # bpp and compression rate
         bitstream = basic_compressor.compress(np.round(range_image_stage_1.detach().cpu().numpy()[0] / stage_1_acc).astype(np.uint16).tobytes())
         compressed_size = len(bitstream) * 8
+        
         
         # compressed_size = os.path.getsize(args.bitstream) * 8
         
